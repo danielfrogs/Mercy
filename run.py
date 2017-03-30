@@ -4,9 +4,9 @@ import json
 
 client = discord.Client()
 
-"""This prints that the bot has started"""
 @client.event
 async def on_ready():
+    """This prints that the bot has started"""
     print("Mercy is online!")
 
 @client.event
@@ -15,10 +15,8 @@ async def on_message(message):
         await client.send_message(message.channel, "Hello " + message.author.mention + ", my name is Mercy!")
         #message.channel sends the message to the channel in which the string entered was detected
         #message.author.mention mentions the person who sent the message to Mercy
-
-@client.event
-async def on_message(message):
-    if message.content.lower() == ("~help"):
+    # We use an elif  here to only check if the command is help if the hi command wasn't issued.
+    elif message.content.lower() == ("~help"):
         await client.send_message(message.channel, message.author.mention + ", sending some help now!")
 
 if __name__ == "__main__":
